@@ -10,20 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_04_220018) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_04_221730) do
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 100, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "clients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 100, null: false
-    t.string "password", limit: 8, null: false
-    t.string "email", limit: 100, null: false
-    t.string "phone_number", limit: 10, null: false
-    t.string "user_name", limit: 100, null: false
-    t.integer "user_type", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
