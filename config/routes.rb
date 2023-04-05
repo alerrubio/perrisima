@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  get "/users", to: "users#index"
-  post "/users", to: "users#create"
-  get "/incomes", to: "incomes#index"
-  post "/incomes", to: "incomes#create"
-  get "/clients", to: "clients#index"
-  post "/clients", to: "clients#create"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :users
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :categories
+  #get "/categories", to: "categories#index"
+  #get "/categories/:id", to: "categories#show"
+  #post "/categories", to: "categories#create"
+  #patch "/categories/:id", to: "categories#update"
+  #delete "/categories/:id", to: "categories#destroy"
 end
