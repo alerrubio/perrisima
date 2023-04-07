@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :clients
   resources :incomes
+  resources :outcomes
   #get "/categories", to: "categories#index"
   #get "/categories/:id", to: "categories#show"
   #post "/categories", to: "categories#create"
