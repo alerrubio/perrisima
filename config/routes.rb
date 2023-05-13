@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :users
+  #resources :users
   resources :categories
   resources :clients
   resources :incomes
-  #get "/categories", to: "categories#index"
+
+  post "/users/login", to: "users#login"
+
   #get "/categories/:id", to: "categories#show"
   #post "/categories", to: "categories#create"
   #patch "/categories/:id", to: "categories#update"

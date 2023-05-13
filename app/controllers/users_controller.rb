@@ -17,7 +17,7 @@ class UsersController < ActionController::API
 
   def show
     begin
-      @user = User.find(params[:id])
+      @user = User.where(email: params[:email])
     rescue ActiveRecord::RecordNotFound
       render json: { error: 'User not found' }, status: :not_found
     else
@@ -47,6 +47,16 @@ class UsersController < ActionController::API
     else
       @user.destroy
       render json: { message: "User deleted" }
+    end
+  end
+
+  def login
+    begin
+      @user = User.where(email: params[:email])
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: 'User not found' }, status: :not_found
+    else
+      render json: @user, status: :ok
     end
   end
 
