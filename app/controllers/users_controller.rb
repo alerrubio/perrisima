@@ -17,7 +17,7 @@ class UsersController < ActionController::API
 
   def show
     begin
-      @user = User.find(params[:id])
+      @user = User.where(email: params[:email])
     rescue ActiveRecord::RecordNotFound
       render json: { error: 'User not found' }, status: :not_found
     else
