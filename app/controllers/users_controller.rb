@@ -52,11 +52,15 @@ class UsersController < ActionController::API
 
   def login
     begin
-      @user = User.where(email: params[:email])
+      @user = User.where(email: params[:email]).first
     rescue ActiveRecord::RecordNotFound
       render json: { error: 'User not found' }, status: :not_found
     else
-      render json: @user, status: :ok
+      if (@user.password == params[:password])
+        render json: @user, status: :ok
+      else
+        render json: { error: 'Wrong credentials' }, status: :unauthorized
+      end      
     end
   end
 
