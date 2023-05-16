@@ -26,16 +26,17 @@ class UsersController < ActionController::API
   end
 
   def update
+    @user = User.find(params[:id])
     begin
-      @user = User.find(params[:id])
+      @user.update(user_params)
     rescue ActiveRecord::RecordNotFound
       render json: { error: 'User not found' }, status: :not_found
+    rescue ActiveRecord::RecordInvalid => e
+      render json: { error: e.message }, status: :unprocessable_entity
+    rescue StandardError => e
+      render json: { data: 'Could not update user', error: @user.errors }, status: :internal_server_error
     else
-      if @user.update(user_params)
-        render json: @user, status: :ok
-      else
-        render json: { data: 'Could not update user', error: @user.errors }, status: :unprocessable_entity
-      end
+      render json: @user, status: :ok
     end
   end
 
@@ -51,10 +52,8 @@ class UsersController < ActionController::API
   end
 
   def login
-    @user = User.find_by(email: params[:email])
-
     begin
-      
+      @user = User.find_by(email: params[:email])
     rescue ActiveRecord::RecordNotFound
       render json: { error: 'User not found' }, status: :not_found
     else
