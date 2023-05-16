@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  #resources :users
+  resources :users
   resources :categories
   resources :clients
   resources :incomes
@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   #get "/categories", to: "categories#index"
 
   post "/users/login", to: "users#login"
+  #post "/users/createEmployee", to: "users#login"
 
   #get "/categories/:id", to: "categories#show"
   #post "/categories", to: "categories#create"

@@ -51,7 +51,7 @@ class ClientsController < ActionController::API
   private
 
   def client_params
-    params.require(:client).permit(:name)
+    params.require(:client).permit(:name, :phone_number)
   end
 
 end
