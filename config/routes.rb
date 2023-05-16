@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   post "/users/login", to: "users#login"
 
+  get "/clients/search/:phone", to: "clients#search"
+
   #get "/categories/:id", to: "categories#show"
   #post "/categories", to: "categories#create"
   #patch "/categories/:id", to: "categories#update"

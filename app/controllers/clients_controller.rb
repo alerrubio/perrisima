@@ -48,10 +48,24 @@ class ClientsController < ActionController::API
     end
   end
 
+  def search
+    begin
+      @client = Client.where(phone_number: params[:phone]).first
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: 'Client not found' }, status: :not_found
+    else
+      if (@client.blank?)
+        render json: { error: 'Client not found' }, status: :not_found
+      else
+        render json: @client, status: :ok
+      end
+    end
+  end
+
   private
 
   def client_params
-    params.require(:client).permit(:name)
+    params.require(:client).permit(:name, :phone_number)
   end
 
 end
