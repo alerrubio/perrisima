@@ -5,5 +5,8 @@ class Outcome < ApplicationRecord
   validates :amount,
   presence: true,
   numericality: true
+
+  validates :comment,
+  presence: true
   
 end

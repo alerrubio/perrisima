@@ -51,7 +51,7 @@ class OutcomesController < ActionController::API
   private
 
   def outcome_params
-    params.require(:outcome).permit(:amount, :category_id, :user_id)
+    params.require(:outcome).permit(:amount, :category_id, :user_id, :comment)
   end
 
 end
