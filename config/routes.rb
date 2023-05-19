@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   resources :clients
   resources :incomes
   resources :outcomes
+  resources :profits
   #get "/categories", to: "categories#index"
 
   post "/users/login", to: "users#login"
 
   get "/clients/search/:phone", to: "clients#search"
+
+  post "/profits/search", to: "profits#byFilters"
 
   #get "/categories/:id", to: "categories#show"
   #post "/categories", to: "categories#create"
