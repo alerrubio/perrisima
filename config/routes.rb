@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get "/clients/search/:phone", to: "clients#search"
 
-  get "/profits/search/:phone", to: "profits#byPhone"
+  post "/profits/search", to: "profits#byFilters"
 
   #get "/categories/:id", to: "categories#show"
   #post "/categories", to: "categories#create"
