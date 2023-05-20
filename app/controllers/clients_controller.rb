@@ -15,10 +15,14 @@ class ClientsController < ActionController::API
   end
 
   def create
-    @client = Client.new(client_params)
-    if @client.save
-      render json: @client, status: :created
-    else
+    begin
+      @client = Client.new(client_params)
+      if @client.save
+        render json: @client, status: :created
+      else
+        render json: @client.errors, status: :internal_server_error
+      end
+    rescue ActiveRecord::RecordNotUnique
       render json: @client.errors, status: :unprocessable_entity
     end
   end
