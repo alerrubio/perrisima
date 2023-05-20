@@ -9,6 +9,9 @@ class Income < ApplicationRecord
       presence: true,
       numericality: true
 
+  validates :comment,
+  presence: true
+      
 
 
 

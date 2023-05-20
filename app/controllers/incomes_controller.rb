@@ -51,7 +51,7 @@ class IncomesController < ActionController::API
   private
 
   def income_params
-    params.require(:income).permit(:amount, :category_id, :client_id, :user_id)
+    params.require(:income).permit(:amount, :category_id, :client_id, :user_id, :comment)
   end
 end
 
