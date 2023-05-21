@@ -54,14 +54,17 @@ class UsersController < ActionController::API
   def login
     begin
       @user = User.find_by(email: params[:email])
+      unless @user.blank?
+        if (@user.password == params[:password])
+          render json: @user, status: :ok
+        else
+          render json: { error: 'Wrong credentials' }, status: :unauthorized
+        end
+      else
+        render json: { error: 'User not found' }, status: :not_found
+      end
     rescue ActiveRecord::RecordNotFound
       render json: { error: 'User not found' }, status: :not_found
-    else
-      if (@user.password == params[:password])
-        render json: @user, status: :ok
-      else
-        render json: { error: 'Wrong credential' }, status: :unauthorized
-      end      
     end
   end
 
