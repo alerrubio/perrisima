@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_20_010818) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_21_051112) do
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 100, null: false
     t.datetime "created_at", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_010818) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "comment", null: false
+    t.string "comment", limit: 10000, null: false
     t.index ["category_id"], name: "index_incomes_on_category_id"
     t.index ["client_id"], name: "index_incomes_on_client_id"
     t.index ["user_id"], name: "index_incomes_on_user_id"
@@ -52,12 +52,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_010818) do
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 100, null: false
     t.string "password", limit: 8, null: false
-    t.string "email", limit: 100, null: false
+    t.string "email", null: false
     t.string "phone_number", limit: 10, null: false
     t.string "user_name", limit: 100, null: false
     t.integer "user_type", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "incomes", "categories"
